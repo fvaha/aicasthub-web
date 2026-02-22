@@ -5,7 +5,9 @@ import { Button, Container, Heading, Text, Badge, Input, Label } from '@medusajs
 import { LockClosedSolid, CheckCircleSolid, Sparkles } from '@medusajs/icons';
 import { ThemeToggle } from '@/components/theme-toggle';
 
-export default function SubscriptionCheckout() {
+import { Suspense } from 'react';
+
+function SubscriptionCheckoutContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const plan = searchParams.get('plan') || 'bronze';
@@ -97,5 +99,13 @@ export default function SubscriptionCheckout() {
                 </form>
             </Container>
         </div>
+    );
+}
+
+export default function SubscriptionCheckout() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-ui-bg-subtle flex items-center justify-center font-bold">Loading Checkout...</div>}>
+            <SubscriptionCheckoutContent />
+        </Suspense>
     );
 }
