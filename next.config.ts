@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/medusa/:path*",
-        destination: "http://localhost:9000/:path*",
+        destination: "http://localhost:9009/:path*",
       },
     ];
   },
